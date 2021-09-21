@@ -86,8 +86,12 @@ while True:
 
     # Draw a black filled box to clear the image.
     draw.rectangle((0, 0, width, height), outline=0, fill=0)
+    
+    cmd = "hostname | cut -d' ' -f1"
+    HOSTNAME = subprocess.check_output(cmd, shell=True).decode("utf-8").upper()
+    newx = 64 - int((len(HOSTNAME)*4)/2)
 
-    draw.text((x + 35, top + 10), "alaindee.net", font=font, fill=255)
+    draw.text((x + newx, top + 10), HOSTNAME, font=font, fill=255)
     draw.text((x + 30, top + 20), "managed by p3k", font=font, fill=255)
     # Display image.
     disp.image(image)
